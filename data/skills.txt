@@ -1,0 +1,53 @@
+
+
+##skillList = ["Attack", "Hitpoints", "Mining", "Strength", "Agility", "Smithing", "Defense", "Herblore", "Fishing", "Ranged", "Thievery", "Cooking", "Prayer", "Crafting", "Firemaking", "Magic", "Fletching", "Woodcutting", "Runecrafting", "Slayer", "Farming"]
+
+##skillStrAtk = """Attack"""
+
+##skillStrHp= """HP"""
+
+##skillStrMine= """Mining"""
+
+##skillStrStr= """Strength"""
+
+##skillStrAgi= """Agility"""
+
+##skillStrSmt= """Smithing"""
+
+##skillStrDef= """Defense"""
+
+##skillStrHrb= """Herblore"""
+
+##skillStrFsh= """Fishing"""
+
+##skillStrRng= """Ranged"""
+
+##skillStrThf= """Thievery"""
+
+##skillStrCook= """Cooking"""
+
+##skillStrPray= """Prayer"""
+
+##skillStrCrft= """Crafting"""
+
+##skillStrFire= """Firemaking"""
+
+##skillStrMag= """Magic"""
+
+##skillStrFlt= """Fletching"""
+
+##skillStrWood= """Woodcutting"""
+
+##skillStrRune= """Runecraft"""
+
+##skillStrSlyr= """Slayer"""
+
+##skillStrFarm= """Farming"""
+
+##skillStrCnst= """Construction"""
+
+##skillStrHunt= """Hunter"""
+
+##skillStrTLvl= """Total Lvl""" 
+
+

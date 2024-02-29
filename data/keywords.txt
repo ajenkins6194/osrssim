@@ -1,0 +1,28 @@
+Actions:
+    System: { set, add, sub }
+    Skills:
+        Attack: { attack, accurate, controlled }
+        Hitpoints {}
+        Mining { mine }
+        Strength { strength, aggresive, controlled }
+        Agility { train }
+        Smithing { smith }
+        Defense { defense, defensive, controlled, dcast }
+        Herblore { create (contextual), add (contextual), make (contextual), clean }
+        Fishing { catch , (tempeross?) } 
+        Ranged { ranged }
+        Thievery { steal, pickpocket }
+        Cooking { cook, make (contextual), create (contextual) }
+        Prayer { bury, altar }
+        Crafting { make (contextual), craft, create (contextual) }
+        Firemaking { burn, (wintertodt?) }
+        Magic { cast, dcast }
+        Fletching { fletch, make (contextual), create (contextual) }
+        Woodcutting { cut, chop }
+        Runecrafting { craft }
+        Slayer { kill (radio btn for task) (on task modifier?) }
+        Farming { harvest (includes planting exp unless modified (only?)), plant }
+Objects:
+    System: { (IDnumbers)}
+Modifiers:
+    { until }

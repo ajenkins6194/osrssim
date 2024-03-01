@@ -1,0 +1,11 @@
+Actions:
+    101,attack,accurate,controlled
+    102,
+    103,mine
+    104,strength,aggresive,controlled
+Objects:
+    1001,tin,tinore
+    1002,copper,copperore
+Modifiers:
+    until
+End

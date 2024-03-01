@@ -1,3 +1,6 @@
+Need to figure out how to structure dictionary.
+
+
 Actions:
     System: { set, add, sub }
     Skills:
@@ -22,7 +25,9 @@ Actions:
         Runecrafting { craft }
         Slayer { kill (radio btn for task) (on task modifier?) }
         Farming { harvest (includes planting exp unless modified (only?)), plant }
+        Construction {}
+        Hunter { catch }
 Objects:
-    System: { (IDnumbers)}
+    System: { (IDnumbers) }
 Modifiers:
     { until }

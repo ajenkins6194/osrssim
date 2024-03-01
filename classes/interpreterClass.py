@@ -38,16 +38,16 @@ class interpreter:
 
         count = 0
 
-        while words[count] != "Objects:":
-            self.actions.append(words[count])
+        while self.words[count] != "Objects:":
+            self.actions.append(self.words[count])
             count+=1
 
-        while words[count] != "Modifiers:":
-            self.objects.append(words[count])
+        while self.words[count] != "Modifiers:":
+            self.objects.append(self.words[count])
             count +=1
 
-        while words[count] != "End":
-            self.modifiers.append(words[count])
+        while self.words[count] != "End":
+            self.modifiers.append(self.words[count])
             count+=1
 
 

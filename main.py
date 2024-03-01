@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import *
 from tkinter.scrolledtext import ScrolledText
-from skillClass import skill
+from classes.skillClass import skill
 
 class LayoutApp:
 

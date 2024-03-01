@@ -1,4 +1,5 @@
 from classes.entityClass import entity
+from classes.nodeClass import node
 
 #skills ID numbers start with 101 for attack to 124 for total level
 
@@ -28,7 +29,13 @@ class skill(entity):
     
     def loseExp(self, amt):
         self.exp -= amt
+    
 
+    ## for now, node is anything that gives exp
+        
+    def processNode(self, ID):
+        nd = node(self, ID)
+        self.gainExp(nd.process())
 
 
     skillList = ["Attack", "Hitpoints", "Mining", "Strength", "Agility", "Smithing", "Defense", "Herblore", "Fishing", "Ranged", "Thievery", "Cooking", "Prayer", "Crafting", "Firemaking", "Magic", "Fletching", "Woodcutting", "Runecrafting", "Slayer", "Farming", "Construction", "Hunter"]

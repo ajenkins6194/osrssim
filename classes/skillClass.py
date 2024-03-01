@@ -1,4 +1,4 @@
-from entityClass import entity
+from classes.entityClass import entity
 
 #skills ID numbers start with 101 for attack to 124 for total level
 

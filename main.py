@@ -1,8 +1,8 @@
 import tkinter as tk
 from tkinter import *
 from tkinter.scrolledtext import ScrolledText
-from classes.skillClass import skill
-from classes.interpreterClass import interpreter
+from classes.skill import skill
+from classes.interpreter import interpreter
 
 class LayoutApp:
 
@@ -35,7 +35,7 @@ class LayoutApp:
             text='OSRS Sim',
             width=900)
         
-        words = open("test.txt", 'r').read()
+        words = open("csv.txt", 'r').read()
         interp = interpreter(words)
 
 

@@ -96,6 +96,10 @@ class LayoutApp:
         def submit():
             
             line = line_var.get()
+
+            cmd = interp.interpret(line)
+
+            skills[cmd[0]].gainExp(cmd[1])
             tkinterscrolledtext2.insert(tk.INSERT, line)
 
         sub_btn = tk.Button(self.osrssim, text = 'Submit', command = submit)

@@ -26,6 +26,7 @@ class skill(entity):
     ##amt needs to be a number with one decimal place
     def gainExp(self, amt):
         self.exp += amt
+        print("Gained ", amt, " exp.")
     
     def loseExp(self, amt):
         self.exp -= amt

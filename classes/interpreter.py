@@ -68,16 +68,40 @@ class interpreter:
                 skCount += 1
         
         db.close()
+       
 
-
-
-
-
-    
-        
-
-    def splitCmd(self, cmd):
+    def interpret(self, cmd):
         self.cmd = cmd.split()
+
+        ## [0] = skill ID, [1] = exp to add
+        interpreted_Cmd = []
+
+        for x, c in enumerate(self.cmd):
+            self.cmd[x] = c.strip()
+        
+        db.connect()
+        
+        skill = (Action_pw
+                 .select(Action_pw, Skill_pw)
+                 .join(Skill_pw)
+                 .where(Action_pw.name == self.cmd[0]))
+        
+        node = (Node_pw
+                .select(Node_pw, Skill_pw)
+                .join(Skill_pw)
+                .where(Node_pw.name == self.cmd[1]))
+        
+        
+        
+        interpreted_Cmd.append(skill[0].owner.skillID - 101)
+        interpreted_Cmd.append(node[0].exp)
+
+        db.close()
+
+        return interpreted_Cmd
+
+
+        
 
     def isAction(self, act):
         ## check if string is found in action dictionary

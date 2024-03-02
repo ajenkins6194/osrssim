@@ -1,7 +1,8 @@
 import tkinter as tk
 from tkinter import *
 from tkinter.scrolledtext import ScrolledText
-from skillClass import skill
+from classes.skillClass import skill
+from classes.interpreterClass import interpreter
 
 class LayoutApp:
 
@@ -34,7 +35,9 @@ class LayoutApp:
             text='OSRS Sim',
             width=900)
         
-        
+        words = open("test.txt", 'r').read()
+        interp = interpreter(words)
+
 
         panedwindow7 = tk.PanedWindow(self.osrssim, orient="vertical")
         panedwindow7.configure(

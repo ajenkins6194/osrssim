@@ -25,7 +25,7 @@ class LayoutApp:
             skillX = skill(100 + x, skillList[x])
             skills.append(skillX)
             levels.append(tk.IntVar())
-            levels[x].set(skillX.getLvl())
+            levels[x].set(skillX.level)
 
 
         self.osrssim = tk.LabelFrame(master, name="osrssim")
@@ -96,11 +96,13 @@ class LayoutApp:
         def submit():
             
             line = line_var.get()
-
+            tkinterscrolledtext2.insert(tk.INSERT, ("( %s )\n" % (line)))
+    
             cmd = interp.interpret(line)
 
-            skills[cmd[0]].gainExp(cmd[1])
-            tkinterscrolledtext2.insert(tk.INSERT, line)
+            msg = skills[cmd[0]].processCmd(cmd)
+            levels[cmd[0]].set(skills[cmd[0]].level)
+            tkinterscrolledtext2.insert(tk.INSERT, msg)
 
         sub_btn = tk.Button(self.osrssim, text = 'Submit', command = submit)
         sub_btn.place(anchor="nw", x=300, y=525)    
@@ -117,6 +119,8 @@ class LayoutApp:
 
     def run(self):
         self.mainwindow.mainloop()
+
+
 
 if __name__ == "__main__":
 

@@ -95,6 +95,10 @@ class interpreter:
         
         interpreted_Cmd.append(skill[0].owner.skillID - 101)
         interpreted_Cmd.append(node[0].exp)
+        try:
+            interpreted_Cmd.append(self.cmd[2])
+        except:
+            interpreted_Cmd.append(1)
 
         db.close()
 

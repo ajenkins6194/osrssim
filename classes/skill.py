@@ -26,11 +26,35 @@ class skill(entity):
     ##amt needs to be a number with one decimal place
     def gainExp(self, amt):
         self.exp += amt
-        print("Gained ", amt, " exp.")
+        if self.checkLevel() is True:
+            msg = ("Gained %s %s exp. Total %s exp is %s "
+                   "and you reached level %s\n" % (amt, self.name, self.name, self.exp, self.level))
+        else:
+            msg = "Gained %s %s exp. Total %s exp is %s \n" % (amt, self.name, self.name, self.exp)
+        return msg
     
     def loseExp(self, amt):
         self.exp -= amt
     
+    def processCmd(self, cmd):
+        msg = self.gainExp(int(cmd[1]) * int(cmd[2]))
+        return msg
+
+    def checkLevel(self):
+        levels = [83,174,276,388,512,650,801,969,1154,1358,1584,1833,2107,2411,2746,3115,3523,3973,4470]
+        cur_level = self.level
+        leveled = False
+        for x in range (cur_level, 99 - cur_level):
+            if levels[x - 1] < self.exp:
+                self.level += 1
+                leveled = True
+            else:
+                break
+
+        return leveled
+        
+
+
 
     ## for now, node is anything that gives exp
      
@@ -39,8 +63,8 @@ class skill(entity):
         self.gainExp(nd.process())
 
 
-    skillList = ["Attack", "Hitpoints", "Mining", "Strength", "Agility", "Smithing", "Defense", "Herblore", "Fishing", "Ranged", "Thievery", "Cooking", "Prayer", "Crafting", "Firemaking", "Magic", "Fletching", "Woodcutting", "Runecrafting", "Slayer", "Farming", "Construction", "Hunter"]
-    
+skillList = ["Attack", "Hitpoints", "Mining", "Strength", "Agility", "Smithing", "Defense", "Herblore", "Fishing", "Ranged", "Thievery", "Cooking", "Prayer", "Crafting", "Firemaking", "Magic", "Fletching", "Woodcutting", "Runecrafting", "Slayer", "Farming", "Construction", "Hunter"]
+   
 
 
     

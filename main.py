@@ -1,7 +1,8 @@
 import tkinter as tk
 from tkinter import *
 from tkinter.scrolledtext import ScrolledText
-from skillClass import skill
+from classes.skill import skill
+from classes.interpreter import interpreter
 
 class LayoutApp:
 
@@ -24,7 +25,7 @@ class LayoutApp:
             skillX = skill(100 + x, skillList[x])
             skills.append(skillX)
             levels.append(tk.IntVar())
-            levels[x].set(skillX.getLvl())
+            levels[x].set(skillX.level)
 
 
         self.osrssim = tk.LabelFrame(master, name="osrssim")
@@ -34,7 +35,9 @@ class LayoutApp:
             text='OSRS Sim',
             width=900)
         
-        
+        words = open("csv.txt", 'r').read()
+        interp = interpreter(words)
+
 
         panedwindow7 = tk.PanedWindow(self.osrssim, orient="vertical")
         panedwindow7.configure(
@@ -93,7 +96,13 @@ class LayoutApp:
         def submit():
             
             line = line_var.get()
-            tkinterscrolledtext2.insert(tk.INSERT, line)
+            tkinterscrolledtext2.insert(tk.INSERT, ("( %s )\n" % (line)))
+    
+            cmd = interp.interpret(line)
+
+            msg = skills[cmd[0]].processCmd(cmd)
+            levels[cmd[0]].set(skills[cmd[0]].level)
+            tkinterscrolledtext2.insert(tk.INSERT, msg)
 
         sub_btn = tk.Button(self.osrssim, text = 'Submit', command = submit)
         sub_btn.place(anchor="nw", x=300, y=525)    
@@ -110,6 +119,8 @@ class LayoutApp:
 
     def run(self):
         self.mainwindow.mainloop()
+
+
 
 if __name__ == "__main__":
 

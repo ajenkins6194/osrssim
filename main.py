@@ -100,15 +100,15 @@ class LayoutApp:
         
         line_var = tk.StringVar()
 
-        def submit(self):
+        def submit():
             
 
             line = line_var.get()
             tkinterscrolledtext2.insert(tk.INSERT, ("( %s )\n" % (line)))
 
-            self.entry3.delete(0, 'end')
+            entry3.delete(0, 'end')
 
-            req = self.req_button_val.get()
+            req = req_button_val.get()
 
 
             cmd = interp.interpret(line, req)
@@ -123,23 +123,23 @@ class LayoutApp:
 
         self.osrssim.bind('<Return>', self.enter_press)        
 
-        self.sub_btn = tk.Button(self.osrssim, text = 'Submit', command = submit)
-        self.sub_btn.bind('<Button-1>', self.enter_press)
-        self.sub_btn.place(anchor="nw", x=300, y=525)
+        sub_btn = tk.Button(self.osrssim, text = 'Submit', command = submit)
+        sub_btn.bind('<Button-1>', self.enter_press)
+        sub_btn.place(anchor="nw", x=300, y=525)
 
          
 
-        self.entry3 = tk.Entry(self.osrssim, textvariable=line_var)
-        self.entry3.place(anchor="nw", relx=.01, rely=0.8, width=650, x=0, y=0)
-        self.entry3.focus_set()
+        entry3 = tk.Entry(self.osrssim, textvariable=line_var)
+        entry3.place(anchor="nw", relx=.01, rely=0.8, width=650, x=0, y=0)
+        entry3.focus_set()
 
-        self.req_button_val = IntVar()
-        self.req_button = tk.Checkbutton(self.osrssim, text= "Check Lvl Requirements",
-                                    variable = self.req_button_val,
+        req_button_val = IntVar()
+        req_button = tk.Checkbutton(self.osrssim, text= "Check Lvl Requirements",
+                                    variable = req_button_val,
                                     onvalue = 1,
                                     offvalue = 0)
 
-        self.req_button.place(anchor="nw",
+        req_button.place(anchor="nw",
                          x=375,
                          y=525)
 

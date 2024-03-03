@@ -37,8 +37,11 @@ class skill(entity):
         self.exp -= amt
     
     def processCmd(self, cmd):
-        msg = self.gainExp(int(cmd[1]) * int(cmd[2]))
-        return msg
+        if self.meets_req(cmd[3]) is True:
+            msg = self.gainExp(int(cmd[1]) * int(cmd[2]))
+            return msg
+        else:
+            return "This requires level %s. You are only level %s.\n" % (cmd[3], self.level)
 
     def checkLevel(self):
         levels = [83,174,276,388,512,650,801,969,1154,1358,1584,1833,2107,2411,2746,3115,3523,3973,4470]
@@ -52,7 +55,12 @@ class skill(entity):
                 break
 
         return leveled
-        
+
+    def meets_req(self, req):
+        if self.level < req:
+            return False
+        else:
+            return True   
 
 
 

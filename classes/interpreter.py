@@ -5,7 +5,7 @@ class interpreter:
     
     def __init__(self, words):
 
-        ## dictionary containing all valid words separated by type. Format:
+        ## dictionary containing all valid words separated by type. Format: OUTDATED
         ##
         ## 101,attack,accurate,controlled,,
         ##     1001,rat,,6,24
@@ -47,8 +47,7 @@ class interpreter:
         count = 0
         skCount = 0
 
-        while(self.words[count] != "End" or test is True):
-            print(self.words[count])
+        while(self.words[count] != "End"):
             skills.append(Skill_pw(name = self.words[count+1], skillID = int(self.words[count])))
             skills[skCount].save()
             count += 1
@@ -56,21 +55,34 @@ class interpreter:
                 actions.append(Action_pw.create(owner = skills[skCount], name = self.words[count]))
                 count += 1
             count+=1
-            while(self.words[count] != ""):
-                for x in range (0,6):
-                    print(x,'. ', self.words[count + x])
-                nodes.append(Node_pw.create(owner = skills[skCount], name = self.words[count+1], nodeID = int(self.words[count]), hp = int(self.words[count + 3]), exp = int(self.words[count + 4])))
-                count += 6
-            if (self.words[count] == '107'):
-                test = False
-            else:
+            while (self.words[count] != ""):
+                long_name = ""
+                id = self.words[count]
                 count += 1
-                skCount += 1
+                temp_name = self.words[count]
+                while(self.words[count] != ""):
+                    ## need to figure out how to have items have multiple names point to the same item
+                    ## remove temp_name
+                    ## long_name += self.words[count] + ','
+                    count += 1
+                nodes.append(Node_pw.create(owner = skills[skCount], name = temp_name, nodeID = int(id), hp = 0, exp = 0, level_req = 0))    
+                count += 1
+                nodes[len(nodes) - 1].hp = int(self.words[count])
+                nodes[len(nodes) - 1].save()
+                count += 1
+                nodes[len(nodes) - 1].exp = int(self.words[count])
+                nodes[len(nodes) - 1].save()
+                count += 1
+                nodes[len(nodes) - 1].level_req = int(self.words[count])
+                nodes[len(nodes) - 1].save()
+                count += 2
+            count += 1
+            skCount += 1
         
         db.close()
        
 
-    def interpret(self, cmd):
+    def interpret(self, cmd, req):
         self.cmd = cmd.split()
 
         ## [0] = skill ID, [1] = exp to add
@@ -86,12 +98,18 @@ class interpreter:
                  .join(Skill_pw)
                  .where(Action_pw.name == self.cmd[0]))
         
+        ## we know the skill. figure out how to only search through that skill
         node = (Node_pw
                 .select(Node_pw, Skill_pw)
                 .join(Skill_pw)
                 .where(Node_pw.name == self.cmd[1]))
         
+        match = 0
         
+
+        for x in range (0, len(node)):
+            if node[x].owner.skillID == skill[0].owner.skillID:
+                match = x
         
         interpreted_Cmd.append(skill[0].owner.skillID - 101)
         interpreted_Cmd.append(node[0].exp)
@@ -99,6 +117,11 @@ class interpreter:
             interpreted_Cmd.append(self.cmd[2])
         except:
             interpreted_Cmd.append(1)
+        if req == 1:
+            interpreted_Cmd.append(node[match].level_req)
+        else:
+            interpreted_Cmd.append(1)
+        
 
         db.close()
 

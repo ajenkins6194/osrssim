@@ -20,9 +20,10 @@ class Action_pw(Model):
 class Node_pw(Model):
     owner = ForeignKeyField(Skill_pw, backref='nodes')
     name = CharField()
-    nodeID = IntegerField
+    nodeID = IntegerField()
     hp = IntegerField()    
     exp = IntegerField()
+    level_req = IntegerField()
     
 
     class Meta:
